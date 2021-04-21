@@ -973,7 +973,7 @@ representation while planning</p>
 <div class="section" id="visualize-the-result">
 <h3>Visualize the result<a class="headerlink" href="#visualize-the-result" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">ros</span><span class="o">::</span><span class="n">Publisher</span> <span class="n">display_publisher</span> <span class="o">=</span>
-    <span class="n">node_handle</span><span class="p">.</span><span class="n">advertise</span><span class="o">&lt;</span><span class="n">moveit_msgs</span><span class="o">::</span><span class="n">DisplayTrajectory</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;/move_group/display_planned_path&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
+    <span class="n">node_handle</span><span class="p">.</span><span class="n">advertise</span><span class="o">&lt;</span><span class="n">moveit_msgs</span><span class="o">::</span><span class="n">DisplayTrajectory</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;/display_planned_path&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
 <span class="n">moveit_msgs</span><span class="o">::</span><span class="n">DisplayTrajectory</span> <span class="n">display_trajectory</span><span class="p">;</span>
 
 <span class="cm">/* Visualize the trajectory */</span>

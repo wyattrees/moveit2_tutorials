@@ -790,17 +790,6 @@
     <li>MoveItCpp Tutorial</li>
   </ul>
   
-        <br />
-<div class="admonition note">
-<p class="first admonition-title">Warning: MoveIt 1 Tutorial</p>
-<p class="last">This is a tutorial from MoveIt 1 that has not yet been ported over to MoveIt2.
-    You can try using this tutorial for MoveIt 2 by replacing <code>catkin</code> with <code>colcon</code>.
-    </br></br>
-    <a href="https://github.com/ros-planning/moveit2_tutorials/blob/main/doc/moveit_cpp/moveitcpp_tutorial.rst">Please update this tutorial for MoveIt 2</a>
-    and remove this warning.
-</p>
-</div>
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -820,14 +809,20 @@
 <div class="section" id="getting-started">
 <h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
 <p>If you haven’t already done so, make sure you’ve completed the steps in <a class="reference external" href="../getting_started/getting_started.html">Getting Started</a>.</p>
+<p><strong>Note:</strong> Because <strong>MovitVisualTools</strong> and <strong>RvizVisualToolsGui</strong> have not been ported to ROS2 this tutoral has made use of xterm and a simple prompter to help the user progress through each demo step.
+To install xterm please run the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">xterm</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="running-the-code">
 <h2>Running the Code<a class="headerlink" href="#running-the-code" title="Permalink to this headline">¶</a></h2>
 <p>Open a shell, run the launch file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">roslaunch</span> <span class="n">moveit_tutorials</span> <span class="n">moveit_cpp_tutorial</span><span class="o">.</span><span class="n">launch</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ros2</span> <span class="n">launch</span> <span class="n">moveit2_tutorials</span> <span class="n">moveit_cpp_tutorial</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
-<p><strong>Note:</strong> This tutorial uses the <strong>RvizVisualToolsGui</strong> panel to step through the demo. To add this panel to RViz, follow the instructions in the <a class="reference external" href="../quickstart_in_rviz/quickstart_in_rviz_tutorial.html#rviz-visual-tools">Visualization Tutorial</a>.</p>
+<p><strong>Note:</strong> RvizVisualToolsGui panel has not been ported to ROS2 yet!</p>
+<p>This tutorial uses the <strong>RvizVisualToolsGui</strong> panel to step through the demo. To add this panel to RViz, follow the instructions in the <a class="reference external" href="../quickstart_in_rviz/quickstart_in_rviz_tutorial.html#rviz-visual-tools">Visualization Tutorial</a>.</p>
 <p>After a short moment, the RViz window should appear and look similar to the one at the top of this page. To progress through each demo step either press the <strong>Next</strong> button in the <strong>RvizVisualToolsGui</strong> panel at the bottom of the screen or select <strong>Key Tool</strong> in the <strong>Tools</strong> panel at the top of the screen and then press <strong>N</strong> on your keyboard while RViz is focused.</p>
 </div>
 <div class="section" id="the-entire-code">
@@ -839,11 +834,11 @@
 <span class="k">static</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">LOGNAME</span> <span class="o">=</span> <span class="s">&quot;moveit_cpp_tutorial&quot;</span><span class="p">;</span>
 
 <span class="cm">/* Otherwise robot with zeros joint_states */</span>
-<span class="n">ros</span><span class="o">::</span><span class="n">Duration</span><span class="p">(</span><span class="mf">1.0</span><span class="p">).</span><span class="n">sleep</span><span class="p">();</span>
+<span class="n">rclcpp</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
 
-<span class="n">ROS_INFO_STREAM_NAMED</span><span class="p">(</span><span class="n">LOGNAME</span><span class="p">,</span> <span class="s">&quot;Starting MoveIt Tutorials...&quot;</span><span class="p">);</span>
+<span class="n">RCLCPP_INFO</span><span class="p">(</span><span class="n">LOGGER</span><span class="p">,</span> <span class="s">&quot;Starting MoveIt Tutorials...&quot;</span><span class="p">);</span>
 
-<span class="k">auto</span> <span class="n">moveit_cpp_ptr</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">moveit</span><span class="o">::</span><span class="n">planning_interface</span><span class="o">::</span><span class="n">MoveItCpp</span><span class="o">&gt;</span><span class="p">(</span><span class="n">nh</span><span class="p">);</span>
+<span class="k">auto</span> <span class="n">moveit_cpp_ptr</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">moveit</span><span class="o">::</span><span class="n">planning_interface</span><span class="o">::</span><span class="n">MoveItCpp</span><span class="o">&gt;</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
 <span class="n">moveit_cpp_ptr</span><span class="o">-&gt;</span><span class="n">getPlanningSceneMonitor</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">providePlanningSceneService</span><span class="p">();</span>
 
 <span class="k">auto</span> <span class="n">planning_components</span> <span class="o">=</span>
@@ -858,10 +853,11 @@
 <h3>Visualization<a class="headerlink" href="#visualization" title="Permalink to this headline">¶</a></h3>
 <p>The package MoveItVisualTools provides many capabilties for visualizing objects, robots,
 and trajectories in RViz as well as debugging tools such as step-by-step introspection of a script</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">moveit_visual_tools</span><span class="o">::</span><span class="n">MoveItVisualTools</span> <span class="n">visual_tools</span><span class="p">(</span><span class="s">&quot;panda_link0&quot;</span><span class="p">,</span> <span class="n">rvt</span><span class="o">::</span><span class="n">RVIZ_MARKER_TOPIC</span><span class="p">,</span>
-                                                    <span class="n">moveit_cpp_ptr</span><span class="o">-&gt;</span><span class="n">getPlanningSceneMonitor</span><span class="p">());</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">rviz_visual_tools</span><span class="o">::</span><span class="n">RvizVisualTools</span> <span class="n">visual_tools</span><span class="p">(</span><span class="s">&quot;panda_link0&quot;</span><span class="p">,</span> <span class="s">&quot;moveit_cpp_tutorial&quot;</span><span class="p">,</span> <span class="n">node</span><span class="p">);</span>
+<span class="cm">/* moveit_visual_tools::MoveItVisualTools visual_tools(&quot;panda_link0&quot;, rvt::RVIZ_MARKER_TOPIC,</span>
+<span class="cm">                                                       moveit_cpp_ptr-&gt;getPlanningSceneMonitor()); */</span>
 <span class="n">visual_tools</span><span class="p">.</span><span class="n">deleteAllMarkers</span><span class="p">();</span>
-<span class="n">visual_tools</span><span class="p">.</span><span class="n">loadRemoteControl</span><span class="p">();</span>
+<span class="cm">/* visual_tools.loadRemoteControl(); */</span>
 
 <span class="n">Eigen</span><span class="o">::</span><span class="n">Isometry3d</span> <span class="n">text_pose</span> <span class="o">=</span> <span class="n">Eigen</span><span class="o">::</span><span class="n">Isometry3d</span><span class="o">::</span><span class="n">Identity</span><span class="p">();</span>
 <span class="n">text_pose</span><span class="p">.</span><span class="n">translation</span><span class="p">().</span><span class="n">z</span><span class="p">()</span> <span class="o">=</span> <span class="mf">1.75</span><span class="p">;</span>
@@ -872,7 +868,8 @@ and trajectories in RViz as well as debugging tools such as step-by-step introsp
 </div>
 <div class="section" id="start-the-demo">
 <h3>Start the demo<a class="headerlink" href="#start-the-demo" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">visual_tools</span><span class="p">.</span><span class="n">prompt</span><span class="p">(</span><span class="s">&quot;Press &#39;next&#39; in the RvizVisualToolsGui window to start the demo&quot;</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span><span class="p">(</span><span class="s">&quot;Press &#39;Enter&#39; to start the demo&quot;</span><span class="p">);</span>
+<span class="cm">/* visual_tools.prompt(&quot;Press &#39;next&#39; in the RvizVisualToolsGui window to start the demo&quot;); */</span>
 </pre></div>
 </div>
 </div>
@@ -888,7 +885,7 @@ they are illustrated in the following plan examples</p>
 </pre></div>
 </div>
 <p>The first way to set the goal of the plan is by using geometry_msgs::PoseStamped ROS message type as follow</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">PoseStamped</span> <span class="n">target_pose1</span><span class="p">;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">PoseStamped</span> <span class="n">target_pose1</span><span class="p">;</span>
 <span class="n">target_pose1</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">frame_id</span> <span class="o">=</span> <span class="s">&quot;panda_link0&quot;</span><span class="p">;</span>
 <span class="n">target_pose1</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">w</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">;</span>
 <span class="n">target_pose1</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mf">0.28</span><span class="p">;</span>
@@ -918,7 +915,7 @@ Note that we are just planning</p>
 </pre></div>
 </div>
 <p>Visualize the trajectory in Rviz</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>  <span class="n">visual_tools</span><span class="p">.</span><span class="n">publishTrajectoryLine</span><span class="p">(</span><span class="n">plan_solution1</span><span class="p">.</span><span class="n">trajectory</span><span class="p">,</span> <span class="n">joint_model_group_ptr</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>  <span class="cm">/* visual_tools.publishTrajectoryLine(plan_solution1.trajectory, joint_model_group_ptr); */</span>
   <span class="n">visual_tools</span><span class="p">.</span><span class="n">trigger</span><span class="p">();</span>
 
   <span class="cm">/* Uncomment if you want to execute the plan */</span>
@@ -928,12 +925,10 @@ Note that we are just planning</p>
 </div>
 <p>Plan #1 visualization:</p>
 <a class="reference internal image-reference" href="../../_images/moveitcpp_plan1.png"><img alt="../../_images/moveitcpp_plan1.png" class="align-center" src="../../_images/moveitcpp_plan1.png" style="width: 250pt;" /></a>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
 <p>Start the next plan</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">visual_tools</span><span class="p">.</span><span class="n">deleteAllMarkers</span><span class="p">();</span>
-<span class="n">visual_tools</span><span class="p">.</span><span class="n">prompt</span><span class="p">(</span><span class="s">&quot;Press &#39;next&#39; in the RvizVisualToolsGui window to continue the demo&quot;</span><span class="p">);</span>
+<span class="n">prompt</span><span class="p">(</span><span class="s">&quot;Press &#39;Enter&#39; to continue the demo&quot;</span><span class="p">);</span>
+<span class="cm">/* visual_tools.prompt(&quot;Press &#39;next&#39; in the RvizVisualToolsGui window to continue the demo&quot;); */</span>
 </pre></div>
 </div>
 </div>
@@ -942,7 +937,7 @@ Note that we are just planning</p>
 <p>Here we will set the current state of the plan using
 moveit::core::RobotState</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">start_state</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="n">moveit_cpp_ptr</span><span class="o">-&gt;</span><span class="n">getCurrentState</span><span class="p">());</span>
-<span class="n">geometry_msgs</span><span class="o">::</span><span class="n">Pose</span> <span class="n">start_pose</span><span class="p">;</span>
+<span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">Pose</span> <span class="n">start_pose</span><span class="p">;</span>
 <span class="n">start_pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">w</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">;</span>
 <span class="n">start_pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mf">0.55</span><span class="p">;</span>
 <span class="n">start_pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
@@ -964,7 +959,7 @@ moveit::core::RobotState</p>
   <span class="n">visual_tools</span><span class="p">.</span><span class="n">publishAxisLabeled</span><span class="p">(</span><span class="n">robot_state</span><span class="p">.</span><span class="n">getGlobalLinkTransform</span><span class="p">(</span><span class="s">&quot;panda_link8&quot;</span><span class="p">),</span> <span class="s">&quot;start_pose&quot;</span><span class="p">);</span>
   <span class="n">visual_tools</span><span class="p">.</span><span class="n">publishText</span><span class="p">(</span><span class="n">text_pose</span><span class="p">,</span> <span class="s">&quot;Goal Pose&quot;</span><span class="p">,</span> <span class="n">rvt</span><span class="o">::</span><span class="n">WHITE</span><span class="p">,</span> <span class="n">rvt</span><span class="o">::</span><span class="n">XLARGE</span><span class="p">);</span>
   <span class="n">visual_tools</span><span class="p">.</span><span class="n">publishAxisLabeled</span><span class="p">(</span><span class="n">target_pose1</span><span class="p">.</span><span class="n">pose</span><span class="p">,</span> <span class="s">&quot;target_pose&quot;</span><span class="p">);</span>
-  <span class="n">visual_tools</span><span class="p">.</span><span class="n">publishTrajectoryLine</span><span class="p">(</span><span class="n">plan_solution2</span><span class="p">.</span><span class="n">trajectory</span><span class="p">,</span> <span class="n">joint_model_group_ptr</span><span class="p">);</span>
+  <span class="cm">/* visual_tools.publishTrajectoryLine(plan_solution2.trajectory, joint_model_group_ptr); */</span>
   <span class="n">visual_tools</span><span class="p">.</span><span class="n">trigger</span><span class="p">();</span>
 
   <span class="cm">/* Uncomment if you want to execute the plan */</span>
@@ -974,12 +969,10 @@ moveit::core::RobotState</p>
 </div>
 <p>Plan #2 visualization:</p>
 <a class="reference internal image-reference" href="../../_images/moveitcpp_plan2.png"><img alt="../../_images/moveitcpp_plan2.png" class="align-center" src="../../_images/moveitcpp_plan2.png" style="width: 250pt;" /></a>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
 <p>Start the next plan</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">visual_tools</span><span class="p">.</span><span class="n">deleteAllMarkers</span><span class="p">();</span>
-<span class="n">visual_tools</span><span class="p">.</span><span class="n">prompt</span><span class="p">(</span><span class="s">&quot;Press &#39;next&#39; in the RvizVisualToolsGui window to continue the demo&quot;</span><span class="p">);</span>
+<span class="n">prompt</span><span class="p">(</span><span class="s">&quot;Press &#39;Enter&#39; to continue the demo&quot;</span><span class="p">);</span>
+<span class="cm">/* visual_tools.prompt(&quot;Press &#39;next&#39; in the RvizVisualToolsGui window to continue the demo&quot;); */</span>
 </pre></div>
 </div>
 </div>
@@ -988,7 +981,7 @@ moveit::core::RobotState</p>
 <p>We can also set the goal of the plan using
 moveit::core::RobotState</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">target_state</span> <span class="o">=</span> <span class="o">*</span><span class="n">robot_start_state</span><span class="p">;</span>
-<span class="n">geometry_msgs</span><span class="o">::</span><span class="n">Pose</span> <span class="n">target_pose2</span><span class="p">;</span>
+<span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">Pose</span> <span class="n">target_pose2</span><span class="p">;</span>
 <span class="n">target_pose2</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">w</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">;</span>
 <span class="n">target_pose2</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mf">0.55</span><span class="p">;</span>
 <span class="n">target_pose2</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="mf">-0.05</span><span class="p">;</span>
@@ -1010,7 +1003,7 @@ moveit::core::RobotState</p>
   <span class="n">visual_tools</span><span class="p">.</span><span class="n">publishAxisLabeled</span><span class="p">(</span><span class="n">robot_state</span><span class="p">.</span><span class="n">getGlobalLinkTransform</span><span class="p">(</span><span class="s">&quot;panda_link8&quot;</span><span class="p">),</span> <span class="s">&quot;start_pose&quot;</span><span class="p">);</span>
   <span class="n">visual_tools</span><span class="p">.</span><span class="n">publishText</span><span class="p">(</span><span class="n">text_pose</span><span class="p">,</span> <span class="s">&quot;Goal Pose&quot;</span><span class="p">,</span> <span class="n">rvt</span><span class="o">::</span><span class="n">WHITE</span><span class="p">,</span> <span class="n">rvt</span><span class="o">::</span><span class="n">XLARGE</span><span class="p">);</span>
   <span class="n">visual_tools</span><span class="p">.</span><span class="n">publishAxisLabeled</span><span class="p">(</span><span class="n">target_pose2</span><span class="p">,</span> <span class="s">&quot;target_pose&quot;</span><span class="p">);</span>
-  <span class="n">visual_tools</span><span class="p">.</span><span class="n">publishTrajectoryLine</span><span class="p">(</span><span class="n">plan_solution3</span><span class="p">.</span><span class="n">trajectory</span><span class="p">,</span> <span class="n">joint_model_group_ptr</span><span class="p">);</span>
+  <span class="cm">/* visual_tools.publishTrajectoryLine(plan_solution3.trajectory, joint_model_group_ptr); */</span>
   <span class="n">visual_tools</span><span class="p">.</span><span class="n">trigger</span><span class="p">();</span>
 
   <span class="cm">/* Uncomment if you want to execute the plan */</span>
@@ -1020,12 +1013,10 @@ moveit::core::RobotState</p>
 </div>
 <p>Plan #3 visualization:</p>
 <a class="reference internal image-reference" href="../../_images/moveitcpp_plan3.png"><img alt="../../_images/moveitcpp_plan3.png" class="align-center" src="../../_images/moveitcpp_plan3.png" style="width: 250pt;" /></a>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
 <p>Start the next plan</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">visual_tools</span><span class="p">.</span><span class="n">deleteAllMarkers</span><span class="p">();</span>
-<span class="n">visual_tools</span><span class="p">.</span><span class="n">prompt</span><span class="p">(</span><span class="s">&quot;Press &#39;next&#39; in the RvizVisualToolsGui window to continue the demo&quot;</span><span class="p">);</span>
+<span class="n">prompt</span><span class="p">(</span><span class="s">&quot;Press &#39;Enter&#39; to continue the demo&quot;</span><span class="p">);</span>
+<span class="cm">/* visual_tools.prompt(&quot;Press &#39;next&#39; in the RvizVisualToolsGui window to continue the demo&quot;); */</span>
 </pre></div>
 </div>
 </div>
@@ -1054,7 +1045,7 @@ see <a class="reference external" href="https://github.com/ros-planning/panda_mo
   <span class="n">visual_tools</span><span class="p">.</span><span class="n">publishAxisLabeled</span><span class="p">(</span><span class="n">robot_state</span><span class="p">.</span><span class="n">getGlobalLinkTransform</span><span class="p">(</span><span class="s">&quot;panda_link8&quot;</span><span class="p">),</span> <span class="s">&quot;start_pose&quot;</span><span class="p">);</span>
   <span class="n">visual_tools</span><span class="p">.</span><span class="n">publishText</span><span class="p">(</span><span class="n">text_pose</span><span class="p">,</span> <span class="s">&quot;Goal Pose&quot;</span><span class="p">,</span> <span class="n">rvt</span><span class="o">::</span><span class="n">WHITE</span><span class="p">,</span> <span class="n">rvt</span><span class="o">::</span><span class="n">XLARGE</span><span class="p">);</span>
   <span class="n">visual_tools</span><span class="p">.</span><span class="n">publishAxisLabeled</span><span class="p">(</span><span class="n">robot_start_state</span><span class="o">-&gt;</span><span class="n">getGlobalLinkTransform</span><span class="p">(</span><span class="s">&quot;panda_link8&quot;</span><span class="p">),</span> <span class="s">&quot;target_pose&quot;</span><span class="p">);</span>
-  <span class="n">visual_tools</span><span class="p">.</span><span class="n">publishTrajectoryLine</span><span class="p">(</span><span class="n">plan_solution4</span><span class="p">.</span><span class="n">trajectory</span><span class="p">,</span> <span class="n">joint_model_group_ptr</span><span class="p">);</span>
+  <span class="cm">/* visual_tools.publishTrajectoryLine(plan_solution4.trajectory, joint_model_group_ptr); */</span>
   <span class="n">visual_tools</span><span class="p">.</span><span class="n">trigger</span><span class="p">();</span>
 
   <span class="cm">/* Uncomment if you want to execute the plan */</span>
@@ -1064,14 +1055,11 @@ see <a class="reference external" href="https://github.com/ros-planning/panda_mo
 </div>
 <p>Plan #4 visualization:</p>
 <a class="reference internal image-reference" href="../../_images/moveitcpp_plan4.png"><img alt="../../_images/moveitcpp_plan4.png" class="align-center" src="../../_images/moveitcpp_plan4.png" style="width: 250pt;" /></a>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
 </div>
 </div>
 <div class="section" id="the-launch-file">
 <h2>The Launch File<a class="headerlink" href="#the-launch-file" title="Permalink to this headline">¶</a></h2>
-<p>The entire launch file is <a class="reference external" href="https://github.com/ros-planning/moveit2_tutorials/blob/main/doc/moveit_cpp/launch/moveit_cpp_tutorial.launch">here</a> on GitHub. All the code in this tutorial can be run from the <strong>moveit_tutorials</strong> package that you have as part of your MoveIt setup.</p>
+<p>The entire launch file is <a class="reference external" href="https://github.com/ros-planning/moveit2_tutorials/blob/main/doc/moveit_cpp/launch/moveit_cpp_tutorial.launch.py">here</a> on GitHub. All the code in this tutorial can be run from the <strong>moveit2_tutorials</strong> package that you have as part of your MoveIt setup.</p>
 </div>
 </div>
 

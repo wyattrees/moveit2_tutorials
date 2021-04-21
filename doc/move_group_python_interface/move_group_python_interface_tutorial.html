@@ -905,9 +905,7 @@ This interface can be used to plan and execute motions:</p>
 <p>Create a <a class="reference external" href="http://docs.ros.org/noetic/api/moveit_msgs/html/msg/DisplayTrajectory.html">DisplayTrajectory</a> ROS publisher which is used to display
 trajectories in Rviz:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">display_trajectory_publisher</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Publisher</span><span class="p">(</span>
-    <span class="s2">&quot;/move_group/display_planned_path&quot;</span><span class="p">,</span>
-    <span class="n">moveit_msgs</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">DisplayTrajectory</span><span class="p">,</span>
-    <span class="n">queue_size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+    <span class="s2">&quot;/display_planned_path&quot;</span><span class="p">,</span> <span class="n">moveit_msgs</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">DisplayTrajectory</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">20</span>
 <span class="p">)</span>
 </pre></div>
 </div>
