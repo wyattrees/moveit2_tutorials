@@ -68,7 +68,7 @@
         <a href="http://moveit.ros.org">
           <img src="../../_static/logo.png"/>
         </a>
-        
+
         <div class="version">
     <div class="version-dropdown">
         <lable for="version-list">Version:</lable>
@@ -793,7 +793,7 @@
         <br />
 <div class="admonition note">
 <p class="first admonition-title">Warning: MoveIt 1 Tutorial</p>
-<p class="last">This is a tutorial from MoveIt 1 that has not yet been ported over to MoveIt2. 
+<p class="last">This is a tutorial from MoveIt 1 that has not yet been ported over to MoveIt2.
     You can try using this tutorial for MoveIt 2 by replacing <code>catkin</code> with <code>colcon</code>.
     </br></br>
     <a href="https://github.com/ros-planning/moveit2_tutorials/blob/main/doc/realtime_servo/realtime_servo_tutorial.rst">Please update this tutorial for MoveIt 2</a>
@@ -844,9 +844,9 @@
 <p>Launch the Gazebo simulation:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">roslaunch</span> <span class="n">ur_gazebo</span> <span class="n">ur5</span><span class="o">.</span><span class="n">launch</span>
 
-<span class="n">roslaunch</span> <span class="n">ur5_moveit_config</span> <span class="n">ur5_moveit_planning_execution</span><span class="o">.</span><span class="n">launch</span> <span class="n">sim</span><span class="p">:</span><span class="o">=</span><span class="n">true</span>
+<span class="n">roslaunch</span> <span class="n">ur5_moveit_config</span> <span class="n">ur5_moveit_planning_execution</span><span class="o">.</span><span class="n">launch</span> <span class="n">sim</span><span class="o">:=</span><span class="n">true</span>
 
-<span class="n">roslaunch</span> <span class="n">ur5_moveit_config</span> <span class="n">moveit_rviz</span><span class="o">.</span><span class="n">launch</span> <span class="n">config</span><span class="p">:</span><span class="o">=</span><span class="n">true</span>
+<span class="n">roslaunch</span> <span class="n">ur5_moveit_config</span> <span class="n">moveit_rviz</span><span class="o">.</span><span class="n">launch</span> <span class="n">config</span><span class="o">:=</span><span class="n">true</span>
 </pre></div>
 </div>
 <p>In RViz, grab the red/blue/green “interactive marker” and drag the robot to a non-singular position (not all zero joint angles) that is not close to a joint limit. Click “plan and execute” to move the robot to that pose.</p>
@@ -960,7 +960,7 @@ catkin run_tests --this
 
     </section>
   </div>
-  
+
   
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {

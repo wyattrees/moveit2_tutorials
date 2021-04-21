@@ -68,7 +68,7 @@
         <a href="http://moveit.ros.org">
           <img src="../../_static/logo.png"/>
         </a>
-        
+
         <div class="version">
     <div class="version-dropdown">
         <lable for="version-list">Version:</lable>
@@ -793,7 +793,7 @@
         <br />
 <div class="admonition note">
 <p class="first admonition-title">Warning: MoveIt 1 Tutorial</p>
-<p class="last">This is a tutorial from MoveIt 1 that has not yet been ported over to MoveIt2. 
+<p class="last">This is a tutorial from MoveIt 1 that has not yet been ported over to MoveIt2.
     You can try using this tutorial for MoveIt 2 by replacing <code>catkin</code> with <code>colcon</code>.
     </br></br>
     <a href="https://github.com/ros-planning/moveit2_tutorials/blob/main/doc/move_group_python_interface/move_group_python_interface_tutorial.rst">Please update this tutorial for MoveIt 2</a>
@@ -878,7 +878,7 @@ and a <a class="reference external" href="http://docs.ros.org/noetic/api/moveit_
 </div>
 <p>First initialize <a class="reference external" href="http://docs.ros.org/noetic/api/moveit_commander/html/namespacemoveit__commander.html">moveit_commander</a> and a <a class="reference external" href="http://docs.ros.org/noetic/api/rospy/html/">rospy</a> node:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">moveit_commander</span><span class="o">.</span><span class="n">roscpp_initialize</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
-<span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="s1">&#39;move_group_python_interface_tutorial&#39;</span><span class="p">,</span> <span class="n">anonymous</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="s2">&quot;move_group_python_interface_tutorial&quot;</span><span class="p">,</span> <span class="n">anonymous</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Instantiate a <a class="reference external" href="http://docs.ros.org/noetic/api/moveit_commander/html/classmoveit__commander_1_1robot_1_1RobotCommander.html">RobotCommander</a> object. Provides information such as the robot’s
@@ -904,9 +904,11 @@ This interface can be used to plan and execute motions:</p>
 </div>
 <p>Create a <a class="reference external" href="http://docs.ros.org/noetic/api/moveit_msgs/html/msg/DisplayTrajectory.html">DisplayTrajectory</a> ROS publisher which is used to display
 trajectories in Rviz:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">display_trajectory_publisher</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s1">&#39;/move_group/display_planned_path&#39;</span><span class="p">,</span>
-                                               <span class="n">moveit_msgs</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">DisplayTrajectory</span><span class="p">,</span>
-                                               <span class="n">queue_size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">display_trajectory_publisher</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Publisher</span><span class="p">(</span>
+    <span class="s2">&quot;/move_group/display_planned_path&quot;</span><span class="p">,</span>
+    <span class="n">moveit_msgs</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">DisplayTrajectory</span><span class="p">,</span>
+    <span class="n">queue_size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 <div class="section" id="getting-basic-information">
@@ -938,11 +940,11 @@ thing we want to do is move it to a slightly better configuration.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># We can get the joint values from the group and adjust some of the values:</span>
 <span class="n">joint_goal</span> <span class="o">=</span> <span class="n">move_group</span><span class="o">.</span><span class="n">get_current_joint_values</span><span class="p">()</span>
 <span class="n">joint_goal</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">joint_goal</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span>
+<span class="n">joint_goal</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span>
 <span class="n">joint_goal</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">joint_goal</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span>
+<span class="n">joint_goal</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span>
 <span class="n">joint_goal</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">joint_goal</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">pi</span><span class="o">/</span><span class="mi">3</span>
+<span class="n">joint_goal</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">pi</span> <span class="o">/</span> <span class="mi">3</span>
 <span class="n">joint_goal</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 
 <span class="c1"># The go command can be called with joint values, poses, or without any</span>
@@ -1001,9 +1003,8 @@ Python shell, set scale = 1.0.</p>
 <span class="c1"># ignoring the check for infeasible jumps in joint space, which is sufficient</span>
 <span class="c1"># for this tutorial.</span>
 <span class="p">(</span><span class="n">plan</span><span class="p">,</span> <span class="n">fraction</span><span class="p">)</span> <span class="o">=</span> <span class="n">move_group</span><span class="o">.</span><span class="n">compute_cartesian_path</span><span class="p">(</span>
-                                   <span class="n">waypoints</span><span class="p">,</span>   <span class="c1"># waypoints to follow</span>
-                                   <span class="mf">0.01</span><span class="p">,</span>        <span class="c1"># eef_step</span>
-                                   <span class="mf">0.0</span><span class="p">)</span>         <span class="c1"># jump_threshold</span>
+    <span class="n">waypoints</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.0</span>  <span class="c1"># waypoints to follow  # eef_step</span>
+<span class="p">)</span>  <span class="c1"># jump_threshold</span>
 
 <span class="c1"># Note: We are just planning, not asking move_group to actually move the robot yet:</span>
 <span class="k">return</span> <span class="n">plan</span><span class="p">,</span> <span class="n">fraction</span>
@@ -1022,7 +1023,7 @@ any AttachedCollisionObjects and add our plan to the trajectory.</p>
 <span class="n">display_trajectory</span><span class="o">.</span><span class="n">trajectory_start</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_current_state</span><span class="p">()</span>
 <span class="n">display_trajectory</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plan</span><span class="p">)</span>
 <span class="c1"># Publish</span>
-<span class="n">display_trajectory_publisher</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">display_trajectory</span><span class="p">);</span>
+<span class="n">display_trajectory_publisher</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">display_trajectory</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1042,7 +1043,7 @@ first waypoint in the <a class="reference external" href="http://docs.ros.org/no
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">box_pose</span> <span class="o">=</span> <span class="n">geometry_msgs</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">PoseStamped</span><span class="p">()</span>
 <span class="n">box_pose</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">frame_id</span> <span class="o">=</span> <span class="s2">&quot;panda_hand&quot;</span>
 <span class="n">box_pose</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">orientation</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="mf">1.0</span>
-<span class="n">box_pose</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="mf">0.11</span> <span class="c1"># above the panda_hand frame</span>
+<span class="n">box_pose</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="mf">0.11</span>  <span class="c1"># above the panda_hand frame</span>
 <span class="n">box_name</span> <span class="o">=</span> <span class="s2">&quot;box&quot;</span>
 <span class="n">scene</span><span class="o">.</span><span class="n">add_box</span><span class="p">(</span><span class="n">box_name</span><span class="p">,</span> <span class="n">box_pose</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mf">0.075</span><span class="p">,</span> <span class="mf">0.075</span><span class="p">,</span> <span class="mf">0.075</span><span class="p">))</span>
 </pre></div>
@@ -1060,21 +1061,21 @@ until the updates have been made or <code class="docutils literal notranslate"><
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">get_time</span><span class="p">()</span>
 <span class="n">seconds</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">get_time</span><span class="p">()</span>
 <span class="k">while</span> <span class="p">(</span><span class="n">seconds</span> <span class="o">-</span> <span class="n">start</span> <span class="o">&lt;</span> <span class="n">timeout</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">rospy</span><span class="o">.</span><span class="n">is_shutdown</span><span class="p">():</span>
-  <span class="c1"># Test if the box is in attached objects</span>
-  <span class="n">attached_objects</span> <span class="o">=</span> <span class="n">scene</span><span class="o">.</span><span class="n">get_attached_objects</span><span class="p">([</span><span class="n">box_name</span><span class="p">])</span>
-  <span class="n">is_attached</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">attached_objects</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span>
+    <span class="c1"># Test if the box is in attached objects</span>
+    <span class="n">attached_objects</span> <span class="o">=</span> <span class="n">scene</span><span class="o">.</span><span class="n">get_attached_objects</span><span class="p">([</span><span class="n">box_name</span><span class="p">])</span>
+    <span class="n">is_attached</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">attached_objects</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span>
 
-  <span class="c1"># Test if the box is in the scene.</span>
-  <span class="c1"># Note that attaching the box will remove it from known_objects</span>
-  <span class="n">is_known</span> <span class="o">=</span> <span class="n">box_name</span> <span class="ow">in</span> <span class="n">scene</span><span class="o">.</span><span class="n">get_known_object_names</span><span class="p">()</span>
+    <span class="c1"># Test if the box is in the scene.</span>
+    <span class="c1"># Note that attaching the box will remove it from known_objects</span>
+    <span class="n">is_known</span> <span class="o">=</span> <span class="n">box_name</span> <span class="ow">in</span> <span class="n">scene</span><span class="o">.</span><span class="n">get_known_object_names</span><span class="p">()</span>
 
-  <span class="c1"># Test if we are in the expected state</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">box_is_attached</span> <span class="o">==</span> <span class="n">is_attached</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">box_is_known</span> <span class="o">==</span> <span class="n">is_known</span><span class="p">):</span>
-    <span class="k">return</span> <span class="kc">True</span>
+    <span class="c1"># Test if we are in the expected state</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">box_is_attached</span> <span class="o">==</span> <span class="n">is_attached</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">box_is_known</span> <span class="o">==</span> <span class="n">is_known</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">True</span>
 
-  <span class="c1"># Sleep so that we give other threads time on the processor</span>
-  <span class="n">rospy</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
-  <span class="n">seconds</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">get_time</span><span class="p">()</span>
+    <span class="c1"># Sleep so that we give other threads time on the processor</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">seconds</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">get_time</span><span class="p">()</span>
 
 <span class="c1"># If we exited the while loop without returning then we timed out</span>
 <span class="k">return</span> <span class="kc">False</span>
@@ -1089,7 +1090,7 @@ collision. By adding link names to the <code class="docutils literal notranslate
 planning scene to ignore collisions between those links and the box. For the Panda
 robot, we set <code class="docutils literal notranslate"><span class="pre">grasping_group</span> <span class="pre">=</span> <span class="pre">'hand'</span></code>. If you are using a different robot,
 you should change this value to the name of your end effector group name.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">grasping_group</span> <span class="o">=</span> <span class="s1">&#39;hand&#39;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">grasping_group</span> <span class="o">=</span> <span class="s2">&quot;hand&quot;</span>
 <span class="n">touch_links</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_link_names</span><span class="p">(</span><span class="n">group</span><span class="o">=</span><span class="n">grasping_group</span><span class="p">)</span>
 <span class="n">scene</span><span class="o">.</span><span class="n">attach_box</span><span class="p">(</span><span class="n">eef_link</span><span class="p">,</span> <span class="n">box_name</span><span class="p">,</span> <span class="n">touch_links</span><span class="o">=</span><span class="n">touch_links</span><span class="p">)</span>
 </pre></div>
@@ -1154,7 +1155,7 @@ on GitHub. All the code in this tutorial can be run from the
 
     </section>
   </div>
-  
+
   
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
