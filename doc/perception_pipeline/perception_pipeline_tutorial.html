@@ -979,7 +979,7 @@ which do not lie in the user specified range.</p>
 </pre></div>
 </div>
 <p>inliers_plane will hold the indices of the point cloud that correspond to a plane.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">pcl</span><span class="o">::</span><span class="n">PointIndices</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">inliers_plane</span><span class="p">(</span><span class="k">new</span> <span class="n">pcl</span><span class="o">::</span><span class="n">PointIndices</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">pcl</span><span class="o">::</span><span class="n">PointIndices</span><span class="o">::</span><span class="n">Ptr</span> <span class="nf">inliers_plane</span><span class="p">(</span><span class="k">new</span> <span class="n">pcl</span><span class="o">::</span><span class="n">PointIndices</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Detect and eliminate the plane on which the cylinder is kept to ease the process of finding the cylinder.</p>
@@ -998,7 +998,7 @@ It has a public attribute <code> values</code> of type <code> std::vector&lt;flo
 <code> Values[0-2]</code> hold a point on the center line of the cylinder. <br />
 <code> Values[3-5]</code> hold direction vector of the z-axis. <br />
 <code> Values[6]</code> is the radius of the cylinder.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">pcl</span><span class="o">::</span><span class="n">ModelCoefficients</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">coefficients_cylinder</span><span class="p">(</span><span class="k">new</span> <span class="n">pcl</span><span class="o">::</span><span class="n">ModelCoefficients</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">pcl</span><span class="o">::</span><span class="n">ModelCoefficients</span><span class="o">::</span><span class="n">Ptr</span> <span class="nf">coefficients_cylinder</span><span class="p">(</span><span class="k">new</span> <span class="n">pcl</span><span class="o">::</span><span class="n">ModelCoefficients</span><span class="p">);</span>
 <span class="cm">/* Extract the cylinder using SACSegmentation. */</span>
 <span class="n">extractCylinder</span><span class="p">(</span><span class="n">cloud</span><span class="p">,</span> <span class="n">coefficients_cylinder</span><span class="p">,</span> <span class="n">cloud_normals</span><span class="p">);</span>
 </pre></div>
@@ -1111,9 +1111,9 @@ Loop over the entire pointcloud.</p>
 <p>Define a pose for the cylinder (specified relative to frame_id).</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">Pose</span> <span class="n">cylinder_pose</span><span class="p">;</span>
 <span class="cm">/* Computing and setting quaternion from axis angle representation. */</span>
-<span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span> <span class="n">cylinder_z_direction</span><span class="p">(</span><span class="n">cylinder_params</span><span class="o">-&gt;</span><span class="n">direction_vec</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cylinder_params</span><span class="o">-&gt;</span><span class="n">direction_vec</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span> <span class="nf">cylinder_z_direction</span><span class="p">(</span><span class="n">cylinder_params</span><span class="o">-&gt;</span><span class="n">direction_vec</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cylinder_params</span><span class="o">-&gt;</span><span class="n">direction_vec</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
                                      <span class="n">cylinder_params</span><span class="o">-&gt;</span><span class="n">direction_vec</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
-<span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span> <span class="n">origin_z_direction</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">);</span>
+<span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span> <span class="nf">origin_z_direction</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">);</span>
 <span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span> <span class="n">axis</span><span class="p">;</span>
 <span class="n">axis</span> <span class="o">=</span> <span class="n">origin_z_direction</span><span class="p">.</span><span class="n">cross</span><span class="p">(</span><span class="n">cylinder_z_direction</span><span class="p">);</span>
 <span class="n">axis</span><span class="p">.</span><span class="n">normalize</span><span class="p">();</span>

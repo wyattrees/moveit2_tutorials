@@ -854,7 +854,7 @@ run you through the C++ code to instantiate and call such a planning pipeline.</
 a RobotModel and a PlanningScene.</p>
 <p>We will start by instantiating a <a class="reference external" href="http://docs.ros.org/noetic/api/moveit_ros_planning/html/classrobot__model__loader_1_1RobotModelLoader.html">RobotModelLoader</a> object, which will look up the robot description on the ROS
 parameter server and construct a <a class="reference external" href="http://docs.ros.org/noetic/api/moveit_core/html/cpp/classmoveit_1_1core_1_1RobotModel.html">RobotModel</a> for us to use.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">robot_model_loader</span><span class="o">::</span><span class="n">RobotModelLoaderPtr</span> <span class="n">robot_model_loader</span><span class="p">(</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">robot_model_loader</span><span class="o">::</span><span class="n">RobotModelLoaderPtr</span> <span class="nf">robot_model_loader</span><span class="p">(</span>
     <span class="k">new</span> <span class="n">robot_model_loader</span><span class="o">::</span><span class="n">RobotModelLoader</span><span class="p">(</span><span class="s">&quot;robot_description&quot;</span><span class="p">));</span>
 </pre></div>
 </div>
@@ -862,7 +862,7 @@ parameter server and construct a <a class="reference external" href="http://docs
 will create a planning scene, monitors planning scene diffs, and apply the diffs to it’s
 internal planning scene. We then call startSceneMonitor, startWorldGeometryMonitor and
 startStateMonitor to fully initialize the planning scene monitor</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">planning_scene_monitor</span><span class="o">::</span><span class="n">PlanningSceneMonitorPtr</span> <span class="n">psm</span><span class="p">(</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">planning_scene_monitor</span><span class="o">::</span><span class="n">PlanningSceneMonitorPtr</span> <span class="nf">psm</span><span class="p">(</span>
     <span class="k">new</span> <span class="n">planning_scene_monitor</span><span class="o">::</span><span class="n">PlanningSceneMonitor</span><span class="p">(</span><span class="n">robot_model_loader</span><span class="p">));</span>
 
 <span class="cm">/* listen for planning scene messages on topic /XXX and apply them to the internal planning scene</span>
@@ -881,7 +881,7 @@ startStateMonitor to fully initialize the planning scene monitor</p>
 <span class="cm">/* We can get the most up to date robot state from the PlanningSceneMonitor by locking the internal planning scene</span>
 <span class="cm">   for reading. This lock ensures that the underlying scene isn&#39;t updated while we are reading it&#39;s state.</span>
 <span class="cm">   RobotState&#39;s are useful for computing the forward and inverse kinematics of the robot among many other uses */</span>
-<span class="n">moveit</span><span class="o">::</span><span class="n">core</span><span class="o">::</span><span class="n">RobotStatePtr</span> <span class="n">robot_state</span><span class="p">(</span>
+<span class="n">moveit</span><span class="o">::</span><span class="n">core</span><span class="o">::</span><span class="n">RobotStatePtr</span> <span class="nf">robot_state</span><span class="p">(</span>
     <span class="k">new</span> <span class="n">moveit</span><span class="o">::</span><span class="n">core</span><span class="o">::</span><span class="n">RobotState</span><span class="p">(</span><span class="n">planning_scene_monitor</span><span class="o">::</span><span class="n">LockedPlanningSceneRO</span><span class="p">(</span><span class="n">psm</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">getCurrentState</span><span class="p">()));</span>
 
 <span class="cm">/* Create a JointModelGroup to keep track of the current robot pose and planning group. The Joint Model</span>
@@ -891,7 +891,7 @@ startStateMonitor to fully initialize the planning scene monitor</p>
 </div>
 <p>We can now setup the PlanningPipeline object, which will use the ROS parameter server
 to determine the set of request adapters and the planning plugin to use</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">planning_pipeline</span><span class="o">::</span><span class="n">PlanningPipelinePtr</span> <span class="n">planning_pipeline</span><span class="p">(</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">planning_pipeline</span><span class="o">::</span><span class="n">PlanningPipelinePtr</span> <span class="nf">planning_pipeline</span><span class="p">(</span>
     <span class="k">new</span> <span class="n">planning_pipeline</span><span class="o">::</span><span class="n">PlanningPipeline</span><span class="p">(</span><span class="n">robot_model</span><span class="p">,</span> <span class="n">node_handle</span><span class="p">,</span> <span class="s">&quot;planning_plugin&quot;</span><span class="p">,</span> <span class="s">&quot;request_adapters&quot;</span><span class="p">));</span>
 </pre></div>
 </div>
@@ -900,8 +900,8 @@ to determine the set of request adapters and the planning plugin to use</p>
 <h3>Visualization<a class="headerlink" href="#visualization" title="Permalink to this headline">¶</a></h3>
 <p>The package MoveItVisualTools provides many capabilities for visualizing objects, robots,
 and trajectories in RViz as well as debugging tools such as step-by-step introspection of a script.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="n">rvt</span> <span class="o">=</span> <span class="n">rviz_visual_tools</span><span class="p">;</span>
-<span class="n">moveit_visual_tools</span><span class="o">::</span><span class="n">MoveItVisualTools</span> <span class="n">visual_tools</span><span class="p">(</span><span class="s">&quot;panda_link0&quot;</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nn">rvt</span> <span class="o">=</span> <span class="nn">rviz_visual_tools</span><span class="p">;</span>
+<span class="n">moveit_visual_tools</span><span class="o">::</span><span class="n">MoveItVisualTools</span> <span class="nf">visual_tools</span><span class="p">(</span><span class="s">&quot;panda_link0&quot;</span><span class="p">);</span>
 <span class="n">visual_tools</span><span class="p">.</span><span class="n">deleteAllMarkers</span><span class="p">();</span>
 
 <span class="cm">/* Remote control is an introspection tool that allows users to step through a high level script</span>
@@ -954,7 +954,7 @@ package.</p>
 <p>Before planning, we will need a Read Only lock on the planning scene so that it does not modify the world
 representation while planning</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="n">planning_scene_monitor</span><span class="o">::</span><span class="n">LockedPlanningSceneRO</span> <span class="n">lscene</span><span class="p">(</span><span class="n">psm</span><span class="p">);</span>
+  <span class="n">planning_scene_monitor</span><span class="o">::</span><span class="n">LockedPlanningSceneRO</span> <span class="nf">lscene</span><span class="p">(</span><span class="n">psm</span><span class="p">);</span>
   <span class="cm">/* Now, call the pipeline and check whether planning was successful. */</span>
   <span class="n">planning_pipeline</span><span class="o">-&gt;</span><span class="n">generatePlan</span><span class="p">(</span><span class="n">lscene</span><span class="p">,</span> <span class="n">req</span><span class="p">,</span> <span class="n">res</span><span class="p">);</span>
 <span class="p">}</span>
@@ -999,7 +999,7 @@ representation while planning</p>
 </pre></div>
 </div>
 <p>Now, setup a joint space goal</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">moveit</span><span class="o">::</span><span class="n">core</span><span class="o">::</span><span class="n">RobotState</span> <span class="n">goal_state</span><span class="p">(</span><span class="o">*</span><span class="n">robot_state</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">moveit</span><span class="o">::</span><span class="n">core</span><span class="o">::</span><span class="n">RobotState</span> <span class="nf">goal_state</span><span class="p">(</span><span class="o">*</span><span class="n">robot_state</span><span class="p">);</span>
 <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">joint_values</span> <span class="o">=</span> <span class="p">{</span> <span class="mf">-1.0</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">-1.5</span><span class="p">,</span> <span class="mf">-0.7</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">};</span>
 <span class="n">goal_state</span><span class="p">.</span><span class="n">setJointGroupPositions</span><span class="p">(</span><span class="n">joint_model_group</span><span class="p">,</span> <span class="n">joint_values</span><span class="p">);</span>
 <span class="n">moveit_msgs</span><span class="o">::</span><span class="n">Constraints</span> <span class="n">joint_goal</span> <span class="o">=</span> <span class="n">kinematic_constraints</span><span class="o">::</span><span class="n">constructGoalConstraints</span><span class="p">(</span><span class="n">goal_state</span><span class="p">,</span> <span class="n">joint_model_group</span><span class="p">);</span>
@@ -1011,7 +1011,7 @@ representation while planning</p>
 <p>Before planning, we will need a Read Only lock on the planning scene so that it does not modify the world
 representation while planning</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="n">planning_scene_monitor</span><span class="o">::</span><span class="n">LockedPlanningSceneRO</span> <span class="n">lscene</span><span class="p">(</span><span class="n">psm</span><span class="p">);</span>
+  <span class="n">planning_scene_monitor</span><span class="o">::</span><span class="n">LockedPlanningSceneRO</span> <span class="nf">lscene</span><span class="p">(</span><span class="n">psm</span><span class="p">);</span>
   <span class="cm">/* Now, call the pipeline and check whether planning was successful. */</span>
   <span class="n">planning_pipeline</span><span class="o">-&gt;</span><span class="n">generatePlan</span><span class="p">(</span><span class="n">lscene</span><span class="p">,</span> <span class="n">req</span><span class="p">,</span> <span class="n">res</span><span class="p">);</span>
 <span class="p">}</span>
@@ -1063,7 +1063,7 @@ has been done on the resultant path</p>
 <p>Before planning, we will need a Read Only lock on the planning scene so that it does not modify the world
 representation while planning</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>  <span class="p">{</span>
-    <span class="n">planning_scene_monitor</span><span class="o">::</span><span class="n">LockedPlanningSceneRO</span> <span class="n">lscene</span><span class="p">(</span><span class="n">psm</span><span class="p">);</span>
+    <span class="n">planning_scene_monitor</span><span class="o">::</span><span class="n">LockedPlanningSceneRO</span> <span class="nf">lscene</span><span class="p">(</span><span class="n">psm</span><span class="p">);</span>
     <span class="cm">/* Now, call the pipeline and check whether planning was successful. */</span>
     <span class="n">planning_pipeline</span><span class="o">-&gt;</span><span class="n">generatePlan</span><span class="p">(</span><span class="n">lscene</span><span class="p">,</span> <span class="n">req</span><span class="p">,</span> <span class="n">res</span><span class="p">);</span>
   <span class="p">}</span>

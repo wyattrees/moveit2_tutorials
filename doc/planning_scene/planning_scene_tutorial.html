@@ -820,9 +820,9 @@ planning scene (and is discussed in detail in the next tutorial)
 using data from the robot’s joints and the sensors on the robot. In
 this tutorial, we will instantiate a PlanningScene class directly,
 but this method of instantiation is only intended for illustration.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">robot_model_loader</span><span class="o">::</span><span class="n">RobotModelLoader</span> <span class="n">robot_model_loader</span><span class="p">(</span><span class="n">planning_scene_tutorial_node</span><span class="p">,</span> <span class="s">&quot;robot_description&quot;</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">robot_model_loader</span><span class="o">::</span><span class="n">RobotModelLoader</span> <span class="nf">robot_model_loader</span><span class="p">(</span><span class="n">planning_scene_tutorial_node</span><span class="p">,</span> <span class="s">&quot;robot_description&quot;</span><span class="p">);</span>
 <span class="k">const</span> <span class="n">moveit</span><span class="o">::</span><span class="n">core</span><span class="o">::</span><span class="n">RobotModelPtr</span><span class="o">&amp;</span> <span class="n">kinematic_model</span> <span class="o">=</span> <span class="n">robot_model_loader</span><span class="p">.</span><span class="n">getModel</span><span class="p">();</span>
-<span class="n">planning_scene</span><span class="o">::</span><span class="n">PlanningScene</span> <span class="n">planning_scene</span><span class="p">(</span><span class="n">kinematic_model</span><span class="p">);</span>
+<span class="n">planning_scene</span><span class="o">::</span><span class="n">PlanningScene</span> <span class="nf">planning_scene</span><span class="p">(</span><span class="n">kinematic_model</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -1006,7 +1006,7 @@ to check the same constraint over and over again, e.g. inside a
 planner). We first construct a KinematicConstraintSet which
 pre-processes the ROS Constraints messages and sets it up for quick
 processing.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">kinematic_constraints</span><span class="o">::</span><span class="n">KinematicConstraintSet</span> <span class="n">kinematic_constraint_set</span><span class="p">(</span><span class="n">kinematic_model</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">kinematic_constraints</span><span class="o">::</span><span class="n">KinematicConstraintSet</span> <span class="nf">kinematic_constraint_set</span><span class="p">(</span><span class="n">kinematic_model</span><span class="p">);</span>
 <span class="n">kinematic_constraint_set</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">goal_constraint</span><span class="p">,</span> <span class="n">planning_scene</span><span class="p">.</span><span class="n">getTransforms</span><span class="p">());</span>
 <span class="kt">bool</span> <span class="n">constrained_2</span> <span class="o">=</span> <span class="n">planning_scene</span><span class="p">.</span><span class="n">isStateConstrained</span><span class="p">(</span><span class="n">copied_state</span><span class="p">,</span> <span class="n">kinematic_constraint_set</span><span class="p">);</span>
 <span class="n">RCLCPP_INFO_STREAM</span><span class="p">(</span><span class="n">LOGGER</span><span class="p">,</span> <span class="s">&quot;Test 9: Random state is &quot;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">constrained_2</span> <span class="o">?</span> <span class="s">&quot;constrained&quot;</span> <span class="o">:</span> <span class="s">&quot;not constrained&quot;</span><span class="p">));</span>

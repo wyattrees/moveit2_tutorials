@@ -891,7 +891,7 @@ that you need for a specific test.
 Let’s make a robot that has one branch, making a Y shape.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">TEST</span><span class="p">(</span><span class="n">MyFirstTestCase</span><span class="p">,</span> <span class="n">SimpleYRobot</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="n">moveit</span><span class="o">::</span><span class="n">core</span><span class="o">::</span><span class="n">RobotModelBuilder</span> <span class="n">builder</span><span class="p">(</span><span class="s">&quot;one_robot&quot;</span><span class="p">,</span> <span class="s">&quot;base_link&quot;</span><span class="p">);</span>
+  <span class="n">moveit</span><span class="o">::</span><span class="n">core</span><span class="o">::</span><span class="n">RobotModelBuilder</span> <span class="nf">builder</span><span class="p">(</span><span class="s">&quot;one_robot&quot;</span><span class="p">,</span> <span class="s">&quot;base_link&quot;</span><span class="p">);</span>
   <span class="n">builder</span><span class="p">.</span><span class="n">addChain</span><span class="p">(</span><span class="s">&quot;base_link-&gt;a&quot;</span><span class="p">,</span> <span class="s">&quot;continuous&quot;</span><span class="p">);</span>
   <span class="n">builder</span><span class="p">.</span><span class="n">addChain</span><span class="p">(</span><span class="s">&quot;a-&gt;b-&gt;c&quot;</span><span class="p">,</span> <span class="s">&quot;fixed&quot;</span><span class="p">);</span>
   <span class="n">builder</span><span class="p">.</span><span class="n">addChain</span><span class="p">(</span><span class="s">&quot;a-&gt;d&quot;</span><span class="p">,</span> <span class="s">&quot;fixed&quot;</span><span class="p">);</span>
@@ -910,7 +910,7 @@ Let’s make a robot that has one branch, making a Y shape.</p>
 <span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="n">testing</span><span class="o">::</span><span class="n">InitGoogleTest</span><span class="p">(</span><span class="o">&amp;</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">);</span>
-  <span class="k">return</span> <span class="nf">RUN_ALL_TESTS</span><span class="p">();</span>
+  <span class="k">return</span> <span class="n">RUN_ALL_TESTS</span><span class="p">();</span>
 <span class="p">}</span>
 </pre></div>
 </div>

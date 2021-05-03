@@ -857,7 +857,7 @@ are used interchangably.</p>
 </div>
 <p>The <a class="reference external" href="http://docs.ros.org/noetic/api/moveit_ros_planning_interface/html/classmoveit_1_1planning__interface_1_1MoveGroupInterface.html">MoveGroupInterface</a> class can be easily
 setup using just the name of the planning group you would like to control and plan for.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">moveit</span><span class="o">::</span><span class="n">planning_interface</span><span class="o">::</span><span class="n">MoveGroupInterface</span> <span class="n">move_group</span><span class="p">(</span><span class="n">move_group_node</span><span class="p">,</span> <span class="n">PLANNING_GROUP</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">moveit</span><span class="o">::</span><span class="n">planning_interface</span><span class="o">::</span><span class="n">MoveGroupInterface</span> <span class="nf">move_group</span><span class="p">(</span><span class="n">move_group_node</span><span class="p">,</span> <span class="n">PLANNING_GROUP</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>We will use the <a class="reference external" href="http://docs.ros.org/noetic/api/moveit_ros_planning_interface/html/classmoveit_1_1planning__interface_1_1PlanningSceneInterface.html">PlanningSceneInterface</a>
@@ -876,8 +876,8 @@ class to add and remove collision objects in our “virtual world” scene</p>
 <p>MoveitVisualTools has not been ported to ROS2 yet so we make use of RvizVisualTools for visualization.
 The package MoveItVisualTools provides many capabilities for visualizing objects, robots,
 and trajectories in RViz as well as debugging tools such as step-by-step introspection of a script.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="n">rvt</span> <span class="o">=</span> <span class="n">rviz_visual_tools</span><span class="p">;</span>
-<span class="n">rviz_visual_tools</span><span class="o">::</span><span class="n">RvizVisualTools</span> <span class="n">visual_tools</span><span class="p">(</span><span class="s">&quot;panda_link0&quot;</span><span class="p">,</span> <span class="s">&quot;move_group_tutorial&quot;</span><span class="p">,</span> <span class="n">move_group_node</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="nn">rvt</span> <span class="o">=</span> <span class="nn">rviz_visual_tools</span><span class="p">;</span>
+<span class="n">rviz_visual_tools</span><span class="o">::</span><span class="n">RvizVisualTools</span> <span class="nf">visual_tools</span><span class="p">(</span><span class="s">&quot;panda_link0&quot;</span><span class="p">,</span> <span class="s">&quot;move_group_tutorial&quot;</span><span class="p">,</span> <span class="n">move_group_node</span><span class="p">);</span>
 <span class="cm">/* moveit_visual_tools::MoveItVisualTools visual_tools(&quot;panda_link0&quot;); */</span>
 <span class="n">visual_tools</span><span class="p">.</span><span class="n">deleteAllMarkers</span><span class="p">();</span>
 
@@ -1051,7 +1051,7 @@ increase planning time considerably.</p>
 Note that this will only work if the current state already
 satisfies the path constraints. So we need to set the start
 state to a new pose.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">moveit</span><span class="o">::</span><span class="n">core</span><span class="o">::</span><span class="n">RobotState</span> <span class="n">start_state</span><span class="p">(</span><span class="o">*</span><span class="n">move_group</span><span class="p">.</span><span class="n">getCurrentState</span><span class="p">());</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">moveit</span><span class="o">::</span><span class="n">core</span><span class="o">::</span><span class="n">RobotState</span> <span class="nf">start_state</span><span class="p">(</span><span class="o">*</span><span class="n">move_group</span><span class="p">.</span><span class="n">getCurrentState</span><span class="p">());</span>
 <span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">Pose</span> <span class="n">start_pose2</span><span class="p">;</span>
 <span class="n">start_pose2</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">w</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">;</span>
 <span class="n">start_pose2</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mf">0.55</span><span class="p">;</span>
